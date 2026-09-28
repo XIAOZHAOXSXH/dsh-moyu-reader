@@ -1,0 +1,7 @@
+# The test fixtures are deliberately NOT all UTF-8: some are GBK-encoded and
+# one is UTF-16LE. Git's line-ending conversion would corrupt them, so they
+# must be treated as byte-exact blobs.
+test/fixtures/*.txt -text
+
+# Everything else: normalise to LF in the repository.
+* text=auto eol=lf

@@ -1,0 +1,75 @@
+{
+  "name": "dsh-moyu-reader",
+  "version": "1.0.0",
+  "description": "DSH web plugin: reads local .txt novels in the right sidebar, with encoding detection, chapter splitting, search, reading progress, bookmarks, and a boss key that hides it instantly. 摸鱼小说阅读器。",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "dsh-plugin",
+    "novel",
+    "reader",
+    "txt",
+    "sidebar",
+    "摸鱼"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XIAOZHAOXSXH/dsh-moyu-reader.git"
+  },
+  "homepage": "https://github.com/XIAOZHAOXSXH/dsh-moyu-reader",
+  "bugs": {
+    "url": "https://github.com/XIAOZHAOXSXH/dsh-moyu-reader/issues"
+  },
+  "author": "小赵先生 <1119352145@qq.com>",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "client",
+    "src",
+    "scripts",
+    "test",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-sidebar-right",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "watch": "node scripts/build-client.mjs --watch",
+    "test": "node test/host.smoke.mjs && node test/client.smoke.mjs",
+    "prepack": "node scripts/build-client.mjs"
+  },
+  "dependencies": {
+    "schemastery": "^3.18.0"
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-test-renderer": "^18.3.1"
+  }
+}

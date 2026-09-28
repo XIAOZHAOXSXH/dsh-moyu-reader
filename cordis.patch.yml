@@ -1,0 +1,29 @@
+# dsh-moyu-reader bundle patch
+#
+# This file is the `dsh.bundle.patch` layer of the published npm package: when
+# the plugin is installed through the official CLI —
+#
+#   dsh plugin --profile <name> add dsh-moyu-reader
+#
+# — the command reconciles `dsh.profile.bundles` against installed packages
+# and, seeing this declaration, appends `dsh-moyu-reader` to the bundle stack.
+# The profile boot then merges THIS patch (a single `insert` of the plugin row).
+# No profile file edits needed — one command installs and mounts.
+#
+# Deployment-level defaults live in this row's `config:`. They become the
+# `base` layer of the plugin's settings namespace, so a user document
+# (settings.yaml) resolves above them and every field stays editable from
+# Settings → 插件 → 插件配置 without editing this file.
+#
+# Example — pin the reader off by default and start the shelf in a fixed folder:
+#
+#   - insert:
+#       - id: moyu-reader
+#         name: 'dsh-moyu-reader'
+#         config:
+#           enabled: false
+#           defaultDir: D:\Books
+#
+- insert:
+    - id: moyu-reader
+      name: 'dsh-moyu-reader'
